@@ -16,7 +16,7 @@ public class RemoveElement {
             //check if the currentLoopingElement is not equal to val
             if(nums[currentLoopingElementIndex] != val){
                 // copy the current valid element to the notValIndex position to move notValIndex to the front (as we start looping the array from the left front)
-                nums[currentLoopingElementIndex] = nums[notValIndex];
+                nums[notValIndex]= nums[currentLoopingElementIndex] ; //why the order of this copying variable does matter ?
                 // then increment notValIndex pointer by 1
                 notValIndex++;
             }
