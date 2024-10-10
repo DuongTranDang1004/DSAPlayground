@@ -2,6 +2,41 @@ package Array.RangeQuery;
 
 public class RangeMinimumQuery {
 
+    static int[] X = {3, 5, 9, 2, 6};
+    static  int N = X.length;
+
+    public int returnMinByPrecomputation(int[] Array, int ArrayLength){
+        int arrayMin = 0;
+        //initialize 2D Array to store min value for all possible range
+        int[][] minValues = new int[ArrayLength][ArrayLength];
+        //initialize diagonal: min of an array element is it self
+        for (int i = 0; i < ArrayLength; i++) {
+            minValues[i][i] = Array[i];
+        }
+        // loop through the 2D Array (nested for loop, note that increase both start range and end range when moving to the next cell)
+        for (int i = 0; i < ArrayLength; i++) { //rows
+            for (int j = i + 1; j < ArrayLength; j++) { //columns
+                //  compare previous cell with the current Y pointer in the array, to obtain current min value
+                minValues[i][j] = Math.min(minValues[i][j-1],Array[j]);
+                arrayMin = minValues[i][j];
+            }
+        }
+     return arrayMin;
+    }
+
+    public static void main(String[] args) {
+        int min = new RangeMinimumQuery().returnMinByPrecomputation(X, N);
+        System.out.println("Minimum number is: " + min);
+    }
+
+
+
+
+
+
+
+
+
     //redo it here
     public static class RangeMinimumQuerySolution {
             public static void main(String[] args) {
